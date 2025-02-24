@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import { Container, Form, Button, Alert } from "react-bootstrap";  // Import required components from React Bootstrap
 
-const UserForm = () => {
+const App = () => {
   // Step 1: Create state for form fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,20 +27,41 @@ const UserForm = () => {
   };
 
   return (
-    <div>
-      <h2>User Registration</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+    <Container className="my-5">
+      <div className="text-center">
+        <h2>User Registration</h2>
+        {message && <Alert variant={message.includes("Error") ? "danger" : "success"}>{message}</Alert>}
+      </div>
 
-        <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formName" className="mb-3">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </Form.Group>
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+        <Form.Group controlId="formEmail" className="mb-3">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Container>
   );
 };
 
-export default UserForm;
+export default App;
