@@ -3,24 +3,22 @@ import axios from "axios";
 import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
 
 const UserForm = () => {
-  // Step 1: Create state for form fields and validation
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [validated, setValidated] = useState(false); // Add validation state
+  const [validated, setValidated] = useState(false);
 
-  // Step 2: Handle form submission
+
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
 
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      setValidated(true); // Trigger validation feedback
-      return; // Prevent submission if form is invalid
+      setValidated(true);
     }
 
     try {
-      // Replace 'YOUR_API_URL' with your actual API endpoint
       const response = await axios.post("https://jsonplaceholder.typicode.com/posts", {
         name,
         email,
@@ -39,8 +37,6 @@ const UserForm = () => {
       <Row className="justify-content-center w-100">
         <Col md="6" className="text-center">
           <h2>User Registration</h2>
-          
-          {/* Display message */}
           {message && (
             <Alert
               variant={message.includes("Error") ? "danger" : "success"}
@@ -50,7 +46,6 @@ const UserForm = () => {
             </Alert>
           )}
 
-          {/* Form */}
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Name</Form.Label>
@@ -60,7 +55,7 @@ const UserForm = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-75 mx-auto" // Center the input and reduce width
+                className="w-75 mx-auto"
               />
               <Form.Control.Feedback type="invalid">
                 Please enter your name.
@@ -75,14 +70,12 @@ const UserForm = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-75 mx-auto" // Center the input and reduce width
+                className="w-75 mx-auto"
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a valid email.
               </Form.Control.Feedback>
             </Form.Group>
-
-            {/* Submit Button */}
             <Button
               variant="primary"
               type="submit"
