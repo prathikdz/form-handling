@@ -22,7 +22,7 @@ const UserForm = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post("https://jsonplaceholder.typicode.com/posts", {
+      const Response = await axios.post("https://jsonplaceholder.typicode.com/posts", {
         name,
         email,
         phone,
@@ -30,6 +30,7 @@ const UserForm = () => {
       });
 
       setMessage("User added successfully! ✅");
+      console.log("Response:", Response.data);
     } catch (error) {
       setMessage("Error submitting the form ❌");
     } finally {
@@ -72,7 +73,7 @@ const UserForm = () => {
 
               <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formName">
-                  <Form.Label className="fw-bold">Full Name :</Form.Label>
+                  <Form.Label className="fw-bold">Name :</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter your name"
