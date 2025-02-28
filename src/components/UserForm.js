@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 const UserForm = () => {
-  // Step 1: Create state for form fields
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact , setContact] = useState("");
@@ -16,9 +16,9 @@ const UserForm = () => {
   
   
 
-  // Step 2: Handle form submission
+  
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
 
     try {
       const response = await axios.post("https://jsonplaceholder.typicode.com/posts", {
